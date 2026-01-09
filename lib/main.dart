@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled3/screens/refund_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.blueAccent)),
       home: const MyWidget(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -121,28 +123,28 @@ class MyWidget extends StatelessWidget {
               flex: 1,
               child: Column(
                 children: [
-                  _informationItem2(
+                  _informationItem(
                     Icon(Icons.email),
                     "Email",
                     "abc1234@gmail.com",
                   ),
-                  _informationItem2(
+                  _informationItem(
                     Icon(Icons.phone_android),
                     "Mobile",
                     "0123456789",
                   ),
-                  _informationItem2(
-                    Image.asset("images/ic_twitter.png"),
+                  _informationItem(
+                    Image.asset("assets/images/ic_twitter.png"),
                     "Twitter",
                     "@ecmm",
                   ),
-                  _informationItem2(
-                    Image.asset("images/ic_behance.png"),
+                  _informationItem(
+                    Image.asset("assets/images/ic_behance.png"),
                     "Behance",
                     "www.behance.net/ecmm",
                   ),
-                  _informationItem2(
-                    Image.asset("images/ic_facebook.png"),
+                  _informationItem(
+                    Image.asset("assets/images/ic_facebook.png"),
                     "Facebook",
                     "www.facebook.com/ecmm",
                   ),
