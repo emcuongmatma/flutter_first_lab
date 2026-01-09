@@ -121,27 +121,27 @@ class MyWidget extends StatelessWidget {
               flex: 1,
               child: Column(
                 children: [
-                  _informationItem(
+                  _informationItem2(
                     Icon(Icons.email),
                     "Email",
                     "abc1234@gmail.com",
                   ),
-                  _informationItem(
+                  _informationItem2(
                     Icon(Icons.phone_android),
                     "Mobile",
                     "0123456789",
                   ),
-                  _informationItem(
+                  _informationItem2(
                     Image.asset("images/ic_twitter.png"),
                     "Twitter",
                     "@ecmm",
                   ),
-                  _informationItem(
+                  _informationItem2(
                     Image.asset("images/ic_behance.png"),
                     "Behance",
                     "www.behance.net/ecmm",
                   ),
-                  _informationItem(
+                  _informationItem2(
                     Image.asset("images/ic_facebook.png"),
                     "Facebook",
                     "www.facebook.com/ecmm",
@@ -216,4 +216,28 @@ Widget _informationItem(Widget widget, String text, String info) {
   );
 }
 
+Widget _informationItem2(Widget widget, String text, String info) {
+  return Material(
+    color: Colors.white,
+    child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Column(
+        children: [
+          ListTile(
+            leading: widget,
+            title: Text(
+              text,
+              style: TextStyle(color: Colors.black26, fontSize: 16),
+            ),
+            subtitle: Text(
+              info,
+              style: TextStyle(color: Colors.black45, fontSize: 16),
+            ),
+          ),
+          Divider(height: 1, thickness: 1),
+        ],
+      ),
+    ),
+  );
+}
 
