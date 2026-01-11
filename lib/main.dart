@@ -121,29 +121,29 @@ class MyWidget extends StatelessWidget {
             SizedBox(height: 8),
             Expanded(
               flex: 1,
-              child: Column(
+              child: ListView(
                 children: [
-                  _informationItem(
+                  _informationItem2(
                     Icon(Icons.email),
                     "Email",
                     "abc1234@gmail.com",
                   ),
-                  _informationItem(
+                  _informationItem2(
                     Icon(Icons.phone_android),
                     "Mobile",
                     "0123456789",
                   ),
-                  _informationItem(
+                  _informationItem2(
                     Image.asset("assets/images/ic_twitter.png"),
                     "Twitter",
                     "@ecmm",
                   ),
-                  _informationItem(
+                  _informationItem2(
                     Image.asset("assets/images/ic_behance.png"),
                     "Behance",
                     "www.behance.net/ecmm",
                   ),
-                  _informationItem(
+                  _informationItem2(
                     Image.asset("assets/images/ic_facebook.png"),
                     "Facebook",
                     "www.facebook.com/ecmm",
