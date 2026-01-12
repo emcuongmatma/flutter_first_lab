@@ -11,12 +11,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(routerConfig: router,debugShowCheckedModeBanner: false,);
+    return MaterialApp.router(
+      routerConfig: router,
+      debugShowCheckedModeBanner: false,
+    );
   }
 }
 
-class MyWidget extends StatelessWidget {
-  const MyWidget({super.key});
+class HomeScreenWidget extends StatelessWidget {
+  const HomeScreenWidget({super.key});
+
+  final String _image =
+      "https://cellphones.com.vn/sforum/wp-content/uploads/2024/02/avatar-anh-meo-cute-3.jpg";
+  final String _placeHolder = 'assets/images/image_refund.png';
+  final _iconTw = "assets/images/ic_twitter.png";
+  final _iconBe = "assets/images/ic_behance.png";
+  final _iconFb = "assets/images/ic_facebook.png";
 
   @override
   Widget build(BuildContext context) {
@@ -27,21 +37,21 @@ class MyWidget extends StatelessWidget {
           // context.push(Uri(path: "/refund",queryParameters: {'id':'emcuongmatma'}).toString());
           // context.push('refund',Model("emcuongmatma"));
         },
-        child: Icon(Icons.navigate_next),
+        child: const Icon(Icons.navigate_next),
       ),
       body: SafeArea(
         child: Container(
-          margin: EdgeInsets.all(8),
-          decoration: BoxDecoration(
+          margin: const EdgeInsets.all(8),
+          decoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadiusGeometry.all(Radius.circular(16)),
           ),
           child: Column(
             children: [
               Card(
-                margin: EdgeInsets.all(0),
+                margin: const EdgeInsets.all(0),
                 color: Colors.blueAccent,
-                shape: RoundedRectangleBorder(
+                shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(16)),
                 ),
                 child: Padding(
@@ -56,10 +66,10 @@ class MyWidget extends StatelessWidget {
                         children: [
                           IconButton(
                             onPressed: () {},
-                            icon: Icon(Icons.arrow_back),
+                            icon: const Icon(Icons.arrow_back),
                             color: Colors.white,
                           ),
-                          Text(
+                          const Text(
                             "Profile",
                             style: TextStyle(
                               color: Colors.white,
@@ -69,7 +79,7 @@ class MyWidget extends StatelessWidget {
                           ),
                           IconButton(
                             onPressed: () {},
-                            icon: Icon(Icons.settings),
+                            icon: const Icon(Icons.settings),
                             color: Colors.white,
                           ),
                         ],
@@ -80,14 +90,19 @@ class MyWidget extends StatelessWidget {
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           border: Border.all(color: Colors.white, width: 4),
-                          image: DecorationImage(
-                            image: NetworkImage(
-                              'https://cellphones.com.vn/sforum/wp-content/uploads/2024/02/avatar-anh-meo-cute-3.jpg',
-                            ),
+                        ),
+                        child: ClipOval(
+                          child: FadeInImage.assetNetwork(
+                            placeholder: _placeHolder,
+                            image: _image,
+                            fit: BoxFit.cover,
+                            imageErrorBuilder: (context, error, stackTrace) {
+                              return Image.asset(_placeHolder);
+                            },
                           ),
                         ),
                       ),
-                      Text(
+                      const Text(
                         "Em Cuong Mat Ma",
                         style: TextStyle(
                           color: Colors.white,
@@ -95,24 +110,24 @@ class MyWidget extends StatelessWidget {
                           fontSize: 20,
                         ),
                       ),
-                      Text(
+                      const Text(
                         "Android Developer Intern",
                         style: TextStyle(color: Colors.white38, fontSize: 20),
                       ),
-                      SizedBox(height: 16),
-                      SizedBox(
+                      const SizedBox(height: 16),
+                      const SizedBox(
                         height: 30,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            _customSpanText(1000, "Follower"),
+                            FollowTitleWidget(number: 1000, text: "Follower"),
                             VerticalDivider(
                               color: Colors.white60,
                               thickness: 1,
                               indent: 2.0,
                               endIndent: 2.0,
                             ),
-                            _customSpanText(1200, "Following"),
+                            FollowTitleWidget(number: 1200, text: "Following"),
                           ],
                         ),
                       ),
@@ -120,35 +135,35 @@ class MyWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               Expanded(
                 flex: 1,
                 child: ListView(
                   children: [
-                    _informationItem2(
-                      Icon(Icons.email),
-                      "Email",
-                      "abc1234@gmail.com",
+                    const InformationTitleWidget(
+                      widget: Icon(Icons.email),
+                      text: "Email",
+                      info: "abc1234@gmail.com",
                     ),
-                    _informationItem2(
-                      Icon(Icons.phone_android),
-                      "Mobile",
-                      "0123456789",
+                    const InformationTitleWidget(
+                      widget: Icon(Icons.phone_android),
+                      text: "Mobile",
+                      info: "0123456789",
                     ),
-                    _informationItem2(
-                      Image.asset("assets/images/ic_twitter.png"),
-                      "Twitter",
-                      "@ecmm",
+                    InformationTitleWidget(
+                      widget: Image.asset(_iconTw),
+                      text: "Twitter",
+                      info: "@ecmm",
                     ),
-                    _informationItem2(
-                      Image.asset("assets/images/ic_behance.png"),
-                      "Behance",
-                      "www.behance.net/ecmm",
+                    InformationTitleWidget(
+                      widget: Image.asset(_iconBe),
+                      text: "Behance",
+                      info: "www.behance.net/ecmm",
                     ),
-                    _informationItem2(
-                      Image.asset("assets/images/ic_facebook.png"),
-                      "Facebook",
-                      "www.facebook.com/ecmm",
+                    InformationTitleWidget(
+                      widget: Image.asset(_iconFb),
+                      text: "Facebook",
+                      info: "www.facebook.com/ecmm",
                     ),
                   ],
                 ),
@@ -161,70 +176,54 @@ class MyWidget extends StatelessWidget {
   }
 }
 
-Widget _customSpanText(int number, String text) {
-  return RichText(
-    text: TextSpan(
-      children: <TextSpan>[
-        TextSpan(
-          text: "$number",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-            fontSize: 14,
+class FollowTitleWidget extends StatelessWidget {
+  final int number;
+  final String text;
+
+  const FollowTitleWidget({
+    super.key,
+    required this.number,
+    required this.text,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return RichText(
+      text: TextSpan(
+        children: <TextSpan>[
+          TextSpan(
+            text: "$number",
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+              fontSize: 14,
+            ),
           ),
-        ),
-        TextSpan(
-          text: " $text",
-          style: TextStyle(color: Colors.white, fontSize: 12),
-        ),
-      ],
-    ),
-  );
+          TextSpan(
+            text: " $text",
+            style: const TextStyle(color: Colors.white, fontSize: 12),
+          ),
+        ],
+      ),
+    );
+  }
 }
 
-// Widget _informationItem(Widget widget, String text, String info) {
-//   return Material(
-//     color: Colors.white,
-//     child: Padding(
-//       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-//       child: Column(
-//         children: [
-//           Row(
-//             mainAxisSize: MainAxisSize.max,
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             children: [
-//               SizedBox(width: 24, height: 24, child: widget),
-//               SizedBox(width: 15),
-//               Expanded(
-//                 child: Column(
-//                   crossAxisAlignment: CrossAxisAlignment.start,
-//                   children: [
-//                     Text(
-//                       text,
-//                       style: TextStyle(color: Colors.black26, fontSize: 16),
-//                     ),
-//                     SizedBox(height: 4),
-//                     Text(
-//                       info,
-//                       style: TextStyle(color: Colors.black45, fontSize: 16),
-//                     ),
-//                     SizedBox(height: 10),
-//                   ],
-//                 ),
-//               ),
-//             ],
-//           ),
-//           Divider(height: 1, thickness: 1),
-//         ],
-//       ),
-//     ),
-//   );
-// }
+class InformationTitleWidget extends StatelessWidget {
+  final Widget widget;
+  final String text;
+  final String info;
 
-Widget _informationItem2(Widget widget, String text, String info) {
-  return Material(
-    color: Colors.white,
-    child: Padding(
+  const InformationTitleWidget({
+    super.key,
+    required this.widget,
+    required this.text,
+    required this.info,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         children: [
@@ -232,16 +231,16 @@ Widget _informationItem2(Widget widget, String text, String info) {
             leading: widget,
             title: Text(
               text,
-              style: TextStyle(color: Colors.black26, fontSize: 16),
+              style: const TextStyle(color: Colors.black26, fontSize: 16),
             ),
             subtitle: Text(
               info,
-              style: TextStyle(color: Colors.black45, fontSize: 16),
+              style: const TextStyle(color: Colors.black45, fontSize: 16),
             ),
           ),
-          Divider(height: 1, thickness: 1),
+          const Divider(height: 1, thickness: 1),
         ],
       ),
-    ),
-  );
+    );
+  }
 }

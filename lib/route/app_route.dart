@@ -6,7 +6,7 @@ import '../screens/refund_screen.dart';
 final router = GoRouter(
   initialLocation: "/",
   routes: [
-    GoRoute(path: '/', builder: (context, state) => MyWidget()),
+    GoRoute(path: '/', builder: (context, state) => const HomeScreenWidget()),
     GoRoute(path: "/refund/:username", builder: (context, state){
       final username = state.pathParameters['username'];
       // final test = state.extra as BankModel;
