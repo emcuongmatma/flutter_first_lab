@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:go_router/go_router.dart';
 
 class RefundScreen extends StatefulWidget {
-  const RefundScreen({super.key});
+  final String? username;
+  const RefundScreen({super.key, this.username});
 
   @override
   State<RefundScreen> createState() => _RefundScreenState();
@@ -22,7 +24,12 @@ class _RefundScreenState extends State<RefundScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.arrow_back_ios_new),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios_new),
+          onPressed: () {
+            context.pop(true);
+          },
+        ),
         title: Text(
           "Thông tin hoàn tiền",
           style: TextStyle(
@@ -81,7 +88,7 @@ class _RefundScreenState extends State<RefundScreen> {
                       fontSize: 16,
                     ),
                   ),
-                  _layoutInputInformation("Họ tên ba/mẹ", "Nhập họ tên"),
+                  _layoutInputInformation("Họ tên ba/mẹ", "Nhập họ tên",widget.username),
                   _layoutInputInformation(
                     "Số điện thoại đăng ký mua hàng",
                     "Nhập số điện thoại",
@@ -155,7 +162,7 @@ class _RefundScreenState extends State<RefundScreen> {
                     fontWeight: FontWeight.w400,
                     color: Color(0xFF85888E),
                     fontSize: 13,
-                    fontStyle: FontStyle.italic
+                    fontStyle: FontStyle.italic,
                   ),
                   children: <TextSpan>[
                     TextSpan(
@@ -228,6 +235,7 @@ class BankModel {
 Widget _layoutInputInformation(
   String field,
   String hint, [
+  String? defaultValue,
   Function(String)? callBack,
 ]) {
   return Column(
@@ -242,7 +250,8 @@ Widget _layoutInputInformation(
           fontSize: 14,
         ),
       ),
-      TextField(
+      TextFormField(
+        initialValue: defaultValue,
         onChanged: (text) => callBack?.call(text),
         decoration: InputDecoration(
           hintText: hint,
